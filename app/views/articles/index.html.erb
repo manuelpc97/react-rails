@@ -1,0 +1,4 @@
+<p id="notice"><%= notice %></p>
+<%= react_component("Articles/ArticleSection", { articles: @articles }, { prerender: true })%>
+<br>
+<%= link_to 'New Article', new_article_path %>
