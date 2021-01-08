@@ -1,20 +1,35 @@
-import React, {useState} from 'react';
+import React from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import Router from './../Router';
 import ArticleTable from './ArticleTable';
 
 const ArticleSection = (props) => {
     //  Parsing props
-    const { articles } = props;
+    const { params } = props;
+    const { articles, location } = params;
 
-    //  Component state
-    const [flag, setFlag] = useState(false);
+    //  Getting history to get path
+    const history = useHistory();
+
+    //  Redirecting to form
+    const redirectToForm = () => {
+        window.location = "/articles/new";
+        //history.push('/articles/new');
+    }
 
     //  Rendering functions
     return (
         <>
             <h1>Articles</h1>
-            <ArticleTable articles={articles}/>
-            <button onClick={() => setFlag(!flag)}>Change state</button>
-            <h2>{`State: ${flag}`}</h2>
+            <ArticleTable articles={articles} />
+            <Link to='/articles/new'>
+                Create articles
+            </Link>
+            <br />
+            <br />
+            <button onClick={redirectToForm}>
+                Create Articles
+            </button>
         </>
     );
 }
